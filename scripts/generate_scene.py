@@ -1,22 +1,16 @@
 import os
 import requests
-import time  # Added for optional retry delays
+from backup_utils import backup_file
 
 CHARACTER_FOLDER = "characters"
 WORLD_FOLDER = "world"
 STORY_FILE = "data/story_recent.txt"
 
 API_URL = "http://127.0.0.1:5000/v1/chat/completions"
-API_PARAMS = {
-    "mode": "instruct",
-    "temperature": 0.8,
-    "top_p": 0.9,
-    "max_tokens": 800,
-}
 
 def load_file(filepath):
     if os.path.exists(filepath):
-        with open(filepath, "r") as file:
+        with open(filepath, "r", encoding='utf-8') as file:
             return file.read()
     return ""
 
@@ -25,9 +19,19 @@ def get_ai_response(context, retries=3):
     while retry_count < retries:
         try:
             print(f"Attempting API Call (Try {retry_count + 1}/{retries})...")
-            response = requests.post(API_URL, json={"messages": [{"role": "system", "content": context}]})
+            
+            payload = {
+                "mode": "instruct",
+                "messages": [{"role": "user", "content": context}],
+                "max_tokens": 800,
+                "temperature": 0.8,
+                "top_p": 0.9
+            }
+            
+            response = requests.post(API_URL, json=payload, timeout=120)
+            
             if response.status_code == 200:
-                return response.json().get("choices", [{}])[0].get("message", {}).get("content", "").strip()
+                return response.json()['choices'][0]['message']['content'].strip()
             else:
                 print(f"API Error: Status Code {response.status_code}")
         except Exception as e:
@@ -39,7 +43,7 @@ def get_ai_response(context, retries=3):
             if retry != "yes":
                 return None
         else:
-            print("Maximum retries reached. Moving on.")
+            print("Maximum retries reached.")
             return None
 
 def generate_scene():
@@ -70,36 +74,39 @@ def generate_scene():
         else:
             print(f"Warning: No memory files found for NPC '{npc}'. Skipping...")
 
-    context = f"""
-[Style Guide]
-{style_guide}
+    context = f"""{style_guide}
 
-[World State]
-{world_state}
-
-[World Encyclopedia]
+WORLD ENCYCLOPEDIA:
 {world_encyclopedic}
 
-[Story So Far]
+CURRENT WORLD STATE:
+{world_state}
+
+ACTIVE CHARACTERS IN THIS SCENE:
+{chr(10).join(npc_memories)}
+
+RECENT STORY:
 {story_recent}
 
-[Protagonist's Passage]
+CURRENT SCENE:
 {protagonist_passage}
 
-[NPCs' Memories]
-{'\n'.join(npc_memories)}
-"""
+Continue the scene. How do the other characters react?"""
 
     ai_response = get_ai_response(context)
     if ai_response:
-        print("\nAI Response:")
+        print("\n=== AI RESPONSE ===")
         print(ai_response)
+        print("===================\n")
 
-        approve = input("\nDo you approve this response? (yes/no): ").strip().lower()
-        if approve == "yes":
-            with open(STORY_FILE, "a") as story:
-                story.write(f"\nProtagonist:\n{protagonist_passage}\n\nNPCs:\n{ai_response}\n")
-            print("\nResponse added to story.")
+        approve = input("Add to story? (y/n): ").strip().lower()
+        if approve == "y":
+            # Backup before saving
+            backup_file(STORY_FILE)
+            
+            with open(STORY_FILE, "a", encoding='utf-8') as story:
+                story.write(f"\n\n{protagonist_passage}\n\n{ai_response}")
+            print("\nSaved to story.")
         else:
             print("Response rejected.")
 
