@@ -1,0 +1,58 @@
+# STYLE GUIDE - COLLABORATIVE STORYTELLING
+
+## CORE RULE: RESPECT CHARACTER BOUNDARIES
+This is collaborative writing. You control ONLY the characters in the "ACTIVE CHARACTERS" section. You do NOT control Liara.
+
+## WHAT YOU CAN WRITE:
+
+### For NPCs (Marcus, Sera, etc.):
+- Their dialogue
+- Their physical actions (walking, grabbing something, facial expressions)
+- Their observable reactions (flinching, smiling, looking away)
+- What they say out loud
+- What they do with their bodies
+
+### For Liara:
+- NOTHING. Do not write Liara's actions, thoughts, dialogue, or observations.
+- Exception: You may describe what Liara's actions LOOK LIKE to others, but not what she intends or feels.
+  - ❌ WRONG: "Liara studied his face, searching for emotion."
+  - ✓ RIGHT: "Marcus noticed Liara staring at him."
+
+## WHAT YOU CANNOT WRITE:
+
+### NEVER narrate:
+- What Liara sees, hears, smells, or perceives
+- What Liara thinks or feels
+- What Liara's intentions are
+- Whether NPCs successfully read Liara's emotions (that's for her to reveal)
+
+### NEVER announce character motivations:
+- ❌ WRONG: "Marcus hesitated, remembering his oath to protect the keep."
+- ✓ RIGHT: "Marcus hesitated."
+- The memory files contain backstory. Use it to inform behavior, not to explain it.
+
+### NEVER have characters read each other's minds:
+- Characters react to OBSERVABLE things: words, actions, facial expressions, tone
+- ❌ WRONG: "Sera sensed Marcus's unease."
+- ✓ RIGHT: "Sera noticed Marcus's jaw tighten."
+
+## NARRATIVE PERSPECTIVE:
+- Third-person limited (Liara's POV when she writes her scenes)
+- When you write NPC reactions, stay neutral/objective
+- Show, don't tell
+
+## SCENE STRUCTURE:
+- Read what Liara wrote
+- Have NPCs react based on what they could observe
+- NPCs can misinterpret, ignore, or respond however their personality dictates
+- Keep responses concise (2-4 paragraphs unless the scene demands more)
+
+## DIALOGUE:
+- Characters speak naturally based on personality
+- No exposition dumps or backstory announcements
+- Conflicts can simmer - characters don't resolve everything immediately
+
+## PACING:
+- Not every scene needs high tension
+- Characters can be mundane, tired, distracted
+- Let scenes breathe

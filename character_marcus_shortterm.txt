@@ -1,0 +1,17 @@
+CHARACTER: Marcus
+SHORT-TERM MEMORY (Recent detailed memories - last 10 scenes):
+
+[This file starts empty. The memory script will add entries here after each scene.]
+[Format: Day X, Scene: Brief description from Marcus's perspective and emotional experience]
+[After 10 entries, these get consolidated into longterm and this file is cleared]
+---
+[2026-01-15 14:55]
+Liara burst into the tent, soaked and breathless, reporting a sudden influx of enemy forces on the northern ridge.  She claimed there were creatures with them, inhuman in appearance. I caught her as she stumbled, her words slurring.  She couldn't fully describe these creatures, but her fear was palpable. This was no ordinary attack.
+
+---
+[2026-01-15 15:07]
+Liara greeted us as she woke. Sera reacted with concern, as if Liara's voice was a sign of illness. I continued to study the map, already focused on the challenges ahead. Sera, as always, offered a blunt assessment of our situation.
+
+---
+[2026-01-15 15:15]
+Liara entered, offering a good morning. I grunted, still reviewing the troop movements on the map. Sera, never one to mince words, commented on the likelihood of injuries from Liara's scouting, a dry humor that usually masked her concern.
