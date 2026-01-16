@@ -168,8 +168,23 @@ Continue the scene. How do the NPCs react?"""
             if additional_instruction:
                 full_context += f"\n\n{additional_instruction}"
             
+            # DEBUG: Show what's being loaded
+            print("\n=== CONTEXT DEBUG ===")
+            print(f"NPCs loaded: {', '.join([data['name'] for data in npc_data.values()])}")
+            for npc_key, data in npc_data.items():
+                bg_lines = len([l for l in data['background'].split('\n') if l.strip()]) if data['background'] else 0
+                st_lines = len([l for l in data['shortterm'].split('\n') if l.strip()]) if data['shortterm'] else 0
+                lt_lines = len([l for l in data['longterm'].split('\n') if l.strip()]) if data['longterm'] else 0
+                print(f"  {data['name']}: BG={bg_lines} lines, ST={st_lines} entries, LT={lt_lines} entries")
+            
+            draft_paragraphs = len(scene_draft)
+            print(f"Scene draft: {draft_paragraphs} paragraphs")
+            print(f"Style guide: {'loaded' if style_guide else 'MISSING'}")
+            print(f"World state: {'loaded' if world_state else 'MISSING'}")
+            print("====================\n")
+            
             # Generate AI response
-            print("\nGenerating AI response...")
+            print("Generating AI response...")
             ai_response = get_ai_response(full_context)
             
             if not ai_response:
