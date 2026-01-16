@@ -80,9 +80,9 @@ def interactive_scene():
     
     # Load world/style context once
     print("\nLoading context...")
-    style_guide = load_file(f"{WORLD_FOLDER}/style_guide.txt")
-    world_state = load_file(f"{WORLD_FOLDER}/world_state.txt")
-    world_encyclopedic = load_file(f"{WORLD_FOLDER}/world_encyclopedic.txt")
+    style_guide = load_file(os.path.join(PROJECT_ROOT, "prompts", "style_guide.txt"))
+    world_state = load_file(os.path.join(PROJECT_ROOT, "world", "world_state.txt"))
+    world_encyclopedic = load_file(os.path.join(PROJECT_ROOT, "world", "world_encyclopedic.txt"))
     story_recent = load_file(STORY_FILE)
     
     # Load NPC data
