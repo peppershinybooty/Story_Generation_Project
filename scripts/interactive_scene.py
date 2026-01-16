@@ -28,7 +28,7 @@ def get_ai_response(context, max_tokens=800):
         "mode": "instruct",
         "messages": [{"role": "user", "content": context}],
         "max_tokens": max_tokens,
-        "temperature": 0.8,
+        "temperature": 0.5,  # Lowered to reduce hallucination
         "top_p": 0.9
     }
     
@@ -137,7 +137,9 @@ def interactive_scene():
         npc_context = "\n".join(npc_context_parts)
         current_draft = "\n\n".join(scene_draft)
         
-        base_context = f"""{style_guide}
+        base_context = f"""CRITICAL INSTRUCTION: You may ONLY write for characters explicitly listed in ACTIVE CHARACTERS below. Do NOT write for any other characters. Do NOT introduce new characters. If a character is not in the ACTIVE CHARACTERS list, they do NOT exist in this scene and you must NOT mention them.
+
+{style_guide}
 
 WORLD ENCYCLOPEDIA:
 {world_encyclopedic}
@@ -145,7 +147,7 @@ WORLD ENCYCLOPEDIA:
 CURRENT WORLD STATE:
 {world_state}
 
-ACTIVE CHARACTERS:
+ACTIVE CHARACTERS IN THIS SCENE (ONLY WRITE FOR THESE):
 {npc_context}
 
 RECENT STORY:
@@ -157,7 +159,7 @@ CURRENT SCENE SO FAR:
 LATEST ACTION:
 {protag_paragraph}
 
-Continue the scene. How do the NPCs react?"""
+Write ONLY the reactions of characters listed in ACTIVE CHARACTERS. No other characters exist in this scene."""
         
         # AI generation loop with regeneration options
         additional_instruction = ""
@@ -243,7 +245,7 @@ Continue the scene. How do the NPCs react?"""
                 elif regen_choice == "d":  # Remind of detail
                     reminder = input("\nWhat detail should AI remember?: ").strip()
                     if reminder:
-                        additional_instruction = f"IMPORTANT CONTEXT TO REMEMBER: {reminder}"
+                        additional_instruction = f"CRITICAL FACT YOU MUST RESPECT: {reminder}\n\nThis fact OVERRIDES any assumptions. Characters must act according to their established traits and background."
                         print("\nRegenerating with reminder...")
                         continue
                     else:
